@@ -16,4 +16,5 @@ initial config: set fxp0 dhcp, set root password, set user netconfig
 Download vSRX3 from https://support.juniper.net/support/downloads/?p=vsrx3
 
 junos-vsrx3-x86-64-22.1R1.10.qcow2
+junos-vsrx3-x86-64-22.1R1.10.scsi.ova
 
