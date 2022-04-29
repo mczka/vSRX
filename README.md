@@ -18,3 +18,5 @@ Download vSRX3 from https://support.juniper.net/support/downloads/?p=vsrx3
 junos-vsrx3-x86-64-22.1R1.10.qcow2
 junos-vsrx3-x86-64-22.1R1.10.scsi.ova
 
+https://www.xmodulo.com/convert-ova-to-qcow2-linux.html
+
