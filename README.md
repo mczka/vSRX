@@ -7,7 +7,7 @@ SPC SRX5k - data plane vSRX3
 IOC SRX5k - interfaces: managment, zone Internet, zone trust
 routers - DC gateways, L3VPN per zone, BGP routing and auto-FBF ECMP load balancing (consistent-hash source-IP [trust], destination-IP [Internet])
 
-# server x86_64 - baremetal with KVM/libviert/qemu/kubevirt
+# server x86_64 - baremetal + linux kernel kvm/vhost-net/iSCSI/NVMe + cloud-init + KVM/libviert/qemu + k8s/kubevirt
 Infrastructure
 VM: ansible-control-node - module junos_netconf, LCM of the SRX config, SRX CLI commands 
 
