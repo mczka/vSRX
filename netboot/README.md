@@ -14,10 +14,16 @@ test -d /sys/firmware/efi && echo UEFI || echo BIOS
 adduser -h /home/alpine -s /bin/ash alpine
 passwd alpine
 apk add sudo 
-echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel 
+echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
+
 adduser alpine wheel
 
+echo 'alpine ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/alpine
+
+wget https://github.com/mczka.keys >> ~/.ssh/authorized_keys
+
 lock and disable root
+
 $ sudo passwd -l root
 $ sudo passwd -d root
 
