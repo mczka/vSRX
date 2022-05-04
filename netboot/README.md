@@ -12,9 +12,17 @@ apk update
 test -d /sys/firmware/efi && echo UEFI || echo BIOS
 
 adduser -h /home/alpine -s /bin/ash alpine
-passwd alpine
+
 apk add sudo 
 echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel
+
+or
+
+apk add doas htop
+
+cat <<EOF >> /etc/doas.conf
+permit nopass :wheel as root
+EOF
 
 adduser alpine wheel
 
