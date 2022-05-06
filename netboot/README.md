@@ -20,7 +20,7 @@ or
 
 apk add doas htop
 
-cat <<EOF >> /etc/doas.conf
+cat <<EOF >> /etc/doas.d/doas.conf
 permit nopass :wheel as root
 EOF
 
