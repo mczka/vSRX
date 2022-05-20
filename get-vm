@@ -1,0 +1,735 @@
+2-r6515:~ # kubectl get vm -A -o JSON
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "kubevirt.io/v1",
+            "kind": "VirtualMachine",
+            "metadata": {
+                "annotations": {
+                    "harvesterhci.io/volumeClaimTemplates": "[{\"metadata\":{\"name\":\"dhcp-kea-server-disk-1-o7qwi\"},\"spec\":{\"accessModes\":[\"ReadWriteMany\"],\"resources\":{\"requests\":{\"storage\":\"20Gi\"}},\"volumeMode\":\"Block\",\"storageClassName\":\"longhorn\"}},{\"metadata\":{\"name\":\"dhcp-kea-server-disk-0-cdabf\",\"annotations\":{\"harvesterhci.io/imageId\":\"default/image-pvn8c\"}},\"spec\":{\"accessModes\":[\"ReadWriteMany\"],\"resources\":{\"requests\":{\"storage\":\"10Gi\"}},\"volumeMode\":\"Block\",\"storageClassName\":\"longhorn-image-pvn8c\"}}]",
+                    "kubevirt.io/latest-observed-api-version": "v1",
+                    "kubevirt.io/storage-observed-api-version": "v1alpha3",
+                    "network.harvesterhci.io/ips": "[]"
+                },
+                "creationTimestamp": "2022-05-09T09:34:57Z",
+                "finalizers": [
+                    "wrangler.cattle.io/VMController.UnsetOwnerOfPVCs"
+                ],
+                "generation": 5,
+                "labels": {
+                    "harvesterhci.io/creator": "harvester",
+                    "harvesterhci.io/os": "linux"
+                },
+                "name": "dhcp-kea-server",
+                "namespace": "default",
+                "resourceVersion": "2546717",
+                "uid": "949d48a2-fa35-4c77-b28d-f2f2ac1e1f53"
+            },
+            "spec": {
+                "running": true,
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "harvesterhci.io/sshNames": "[]"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "harvesterhci.io/vmName": "dhcp-kea-server"
+                        }
+                    },
+                    "spec": {
+                        "domain": {
+                            "cpu": {
+                                "cores": 4,
+                                "sockets": 1,
+                                "threads": 1
+                            },
+                            "devices": {
+                                "disks": [
+                                    {
+                                        "bootOrder": 1,
+                                        "disk": {
+                                            "bus": "virtio"
+                                        },
+                                        "name": "disk-1"
+                                    },
+                                    {
+                                        "bootOrder": 2,
+                                        "cdrom": {
+                                            "bus": "scsi"
+                                        },
+                                        "name": "disk-0"
+                                    }
+                                ],
+                                "interfaces": [
+                                    {
+                                        "bridge": {},
+                                        "macAddress": "7a:cc:e9:06:c7:9e",
+                                        "model": "virtio",
+                                        "name": "nic-1"
+                                    }
+                                ]
+                            },
+                            "features": {
+                                "acpi": {},
+                                "smm": {
+                                    "enabled": false
+                                }
+                            },
+                            "firmware": {
+                                "bootloader": {
+                                    "efi": {
+                                        "secureBoot": false
+                                    }
+                                }
+                            },
+                            "machine": {
+                                "type": "q35"
+                            },
+                            "memory": {
+                                "guest": "8092Mi"
+                            },
+                            "resources": {
+                                "limits": {
+                                    "cpu": "4",
+                                    "memory": "8Gi"
+                                },
+                                "requests": {
+                                    "cpu": "250m",
+                                    "memory": "5461Mi"
+                                }
+                            }
+                        },
+                        "evictionStrategy": "LiveMigrate",
+                        "hostname": "dhcp-kea-server",
+                        "networks": [
+                            {
+                                "multus": {
+                                    "networkName": "default/public"
+                                },
+                                "name": "nic-1"
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "disk-1",
+                                "persistentVolumeClaim": {
+                                    "claimName": "dhcp-kea-server-disk-1-o7qwi"
+                                }
+                            },
+                            {
+                                "name": "disk-0",
+                                "persistentVolumeClaim": {
+                                    "claimName": "dhcp-kea-server-disk-0-cdabf"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2022-05-09T09:43:59Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": null,
+                        "status": "True",
+                        "type": "LiveMigratable"
+                    }
+                ],
+                "created": true,
+                "printableStatus": "Running",
+                "ready": true,
+                "volumeSnapshotStatuses": [
+                    {
+                        "enabled": true,
+                        "name": "disk-1"
+                    },
+                    {
+                        "enabled": true,
+                        "name": "disk-0"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "kubevirt.io/v1",
+            "kind": "VirtualMachine",
+            "metadata": {
+                "annotations": {
+                    "harvesterhci.io/volumeClaimTemplates": "[{\"metadata\":{\"name\":\"netboot-disk-1-xdwly\"},\"spec\":{\"accessModes\":[\"ReadWriteMany\"],\"resources\":{\"requests\":{\"storage\":\"20Gi\"}},\"volumeMode\":\"Block\",\"storageClassName\":\"longhorn\"}},{\"metadata\":{\"name\":\"netboot-disk-0-4pn3f\",\"annotations\":{\"harvesterhci.io/imageId\":\"default/image-98szk\"}},\"spec\":{\"accessModes\":[\"ReadWriteMany\"],\"resources\":{\"requests\":{\"storage\":\"10Gi\"}},\"volumeMode\":\"Block\",\"storageClassName\":\"longhorn-image-98szk\"}}]",
+                    "kubevirt.io/latest-observed-api-version": "v1",
+                    "kubevirt.io/storage-observed-api-version": "v1alpha3",
+                    "network.harvesterhci.io/ips": "[]"
+                },
+                "creationTimestamp": "2022-05-06T14:11:08Z",
+                "finalizers": [
+                    "wrangler.cattle.io/VMController.UnsetOwnerOfPVCs"
+                ],
+                "generation": 5,
+                "labels": {
+                    "harvesterhci.io/creator": "harvester",
+                    "harvesterhci.io/os": "linux"
+                },
+                "name": "netboot",
+                "namespace": "default",
+                "resourceVersion": "131158",
+                "uid": "1be02a7e-25b5-42ee-8dfa-b1d455a5b659"
+            },
+            "spec": {
+                "running": true,
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "harvesterhci.io/sshNames": "[]"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "harvesterhci.io/vmName": "netboot"
+                        }
+                    },
+                    "spec": {
+                        "domain": {
+                            "cpu": {
+                                "cores": 4,
+                                "sockets": 1,
+                                "threads": 1
+                            },
+                            "devices": {
+                                "disks": [
+                                    {
+                                        "bootOrder": 1,
+                                        "disk": {
+                                            "bus": "virtio"
+                                        },
+                                        "name": "disk-1"
+                                    },
+                                    {
+                                        "bootOrder": 2,
+                                        "cdrom": {
+                                            "bus": "sata"
+                                        },
+                                        "name": "disk-0"
+                                    }
+                                ],
+                                "interfaces": [
+                                    {
+                                        "bridge": {},
+                                        "macAddress": "86:48:56:27:eb:cf",
+                                        "model": "virtio",
+                                        "name": "nic-1"
+                                    }
+                                ]
+                            },
+                            "features": {
+                                "acpi": {},
+                                "smm": {
+                                    "enabled": false
+                                }
+                            },
+                            "firmware": {
+                                "bootloader": {
+                                    "efi": {
+                                        "secureBoot": false
+                                    }
+                                }
+                            },
+                            "machine": {
+                                "type": "q35"
+                            },
+                            "memory": {
+                                "guest": "8092Mi"
+                            },
+                            "resources": {
+                                "limits": {
+                                    "cpu": "4",
+                                    "memory": "8Gi"
+                                },
+                                "requests": {
+                                    "cpu": "250m",
+                                    "memory": "5461Mi"
+                                }
+                            }
+                        },
+                        "evictionStrategy": "LiveMigrate",
+                        "hostname": "netboot",
+                        "networks": [
+                            {
+                                "multus": {
+                                    "networkName": "default/public"
+                                },
+                                "name": "nic-1"
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "disk-1",
+                                "persistentVolumeClaim": {
+                                    "claimName": "netboot-disk-1-xdwly"
+                                }
+                            },
+                            {
+                                "name": "disk-0",
+                                "persistentVolumeClaim": {
+                                    "claimName": "netboot-disk-0-4pn3f"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2022-05-06T14:17:01Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": null,
+                        "status": "True",
+                        "type": "LiveMigratable"
+                    }
+                ],
+                "created": true,
+                "printableStatus": "Running",
+                "ready": true,
+                "volumeSnapshotStatuses": [
+                    {
+                        "enabled": true,
+                        "name": "disk-1"
+                    },
+                    {
+                        "enabled": true,
+                        "name": "disk-0"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "kubevirt.io/v1",
+            "kind": "VirtualMachine",
+            "metadata": {
+                "annotations": {
+                    "harvesterhci.io/volumeClaimTemplates": "[{\"metadata\":{\"name\":\"vsrx3-0-1-root-disk-vsrx3-0-1-q1jee\",\"annotations\":{\"harvesterhci.io/imageId\":\"default/image-9r7bc\"}},\"spec\":{\"accessModes\":[\"ReadWriteMany\"],\"resources\":{\"requests\":{\"storage\":\"16Gi\"}},\"volumeMode\":\"Block\",\"storageClassName\":\"longhorn-image-9r7bc\"}}]",
+                    "kubevirt.io/latest-observed-api-version": "v1",
+                    "kubevirt.io/storage-observed-api-version": "v1alpha3",
+                    "network.harvesterhci.io/ips": "[]"
+                },
+                "creationTimestamp": "2022-05-20T10:06:16Z",
+                "finalizers": [
+                    "wrangler.cattle.io/VMController.UnsetOwnerOfPVCs"
+                ],
+                "generation": 4,
+                "labels": {
+                    "harvesterhci.io/creator": "harvester",
+                    "harvesterhci.io/os": "linux"
+                },
+                "name": "vsrx3-0-1",
+                "namespace": "default",
+                "resourceVersion": "12011428",
+                "uid": "38de0dde-eb61-45ce-bd1c-d60fca3a055d"
+            },
+            "spec": {
+                "running": true,
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "harvesterhci.io/sshNames": "[]"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "harvesterhci.io/vmName": "vsrx3-0-1"
+                        }
+                    },
+                    "spec": {
+                        "domain": {
+                            "cpu": {
+                                "cores": 8,
+                                "sockets": 1,
+                                "threads": 1
+                            },
+                            "devices": {
+                                "disks": [
+                                    {
+                                        "bootOrder": 1,
+                                        "disk": {
+                                            "bus": "virtio"
+                                        },
+                                        "name": "root-disk-vsrx3-0-1"
+                                    }
+                                ],
+                                "interfaces": [
+                                    {
+                                        "macAddress": "52:54:00:8d:63:09",
+                                        "masquerade": {},
+                                        "model": "virtio",
+                                        "name": "default"
+                                    }
+                                ]
+                            },
+                            "features": {
+                                "acpi": {},
+                                "smm": {
+                                    "enabled": false
+                                }
+                            },
+                            "firmware": {
+                                "bootloader": {
+                                    "efi": {
+                                        "secureBoot": false
+                                    }
+                                }
+                            },
+                            "machine": {
+                                "type": "pc"
+                            },
+                            "memory": {
+                                "guest": "16284Mi"
+                            },
+                            "resources": {
+                                "limits": {
+                                    "cpu": "8",
+                                    "memory": "16Gi"
+                                },
+                                "requests": {
+                                    "cpu": "500m",
+                                    "memory": "10922Mi"
+                                }
+                            }
+                        },
+                        "evictionStrategy": "LiveMigrate",
+                        "hostname": "vsrx3-0-1",
+                        "networks": [
+                            {
+                                "name": "default",
+                                "pod": {}
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "root-disk-vsrx3-0-1",
+                                "persistentVolumeClaim": {
+                                    "claimName": "vsrx3-0-1-root-disk-vsrx3-0-1-q1jee"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2022-05-20T10:13:14Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": null,
+                        "status": "True",
+                        "type": "LiveMigratable"
+                    }
+                ],
+                "created": true,
+                "printableStatus": "Running",
+                "ready": true,
+                "volumeSnapshotStatuses": [
+                    {
+                        "enabled": true,
+                        "name": "root-disk-vsrx3-0-1"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "kubevirt.io/v1",
+            "kind": "VirtualMachine",
+            "metadata": {
+                "annotations": {
+                    "harvesterhci.io/volumeClaimTemplates": "[{\"metadata\":{\"name\":\"vsrx3-0-2-root-disk-vsrx3-0-2-yke82\",\"annotations\":{\"harvesterhci.io/imageId\":\"default/image-9r7bc\"}},\"spec\":{\"accessModes\":[\"ReadWriteMany\"],\"resources\":{\"requests\":{\"storage\":\"18Gi\"}},\"volumeMode\":\"Block\",\"storageClassName\":\"longhorn-image-9r7bc\"}}]",
+                    "kubevirt.io/latest-observed-api-version": "v1",
+                    "kubevirt.io/storage-observed-api-version": "v1alpha3",
+                    "network.harvesterhci.io/ips": "[]"
+                },
+                "creationTimestamp": "2022-05-20T10:15:39Z",
+                "finalizers": [
+                    "wrangler.cattle.io/VMController.UnsetOwnerOfPVCs"
+                ],
+                "generation": 4,
+                "labels": {
+                    "harvesterhci.io/creator": "harvester",
+                    "harvesterhci.io/os": "linux"
+                },
+                "name": "vsrx3-0-2",
+                "namespace": "default",
+                "resourceVersion": "12014018",
+                "uid": "fda0e297-ed39-40f0-a470-b8d163918c68"
+            },
+            "spec": {
+                "running": false,
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "harvesterhci.io/sshNames": "[]"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "harvesterhci.io/vmName": "vsrx3-0-2"
+                        }
+                    },
+                    "spec": {
+                        "domain": {
+                            "cpu": {
+                                "cores": 8,
+                                "sockets": 1,
+                                "threads": 1
+                            },
+                            "devices": {
+                                "disks": [
+                                    {
+                                        "bootOrder": 1,
+                                        "disk": {
+                                            "bus": "scsi"
+                                        },
+                                        "name": "root-disk-vsrx3-0-2"
+                                    }
+                                ],
+                                "interfaces": [
+                                    {
+                                        "macAddress": "52:54:00:a7:b7:0d",
+                                        "masquerade": {},
+                                        "model": "virtio",
+                                        "name": "default"
+                                    }
+                                ]
+                            },
+                            "features": {
+                                "acpi": {},
+                                "smm": {
+                                    "enabled": false
+                                }
+                            },
+                            "firmware": {
+                                "bootloader": {
+                                    "efi": {
+                                        "secureBoot": false
+                                    }
+                                }
+                            },
+                            "machine": {
+                                "type": "q35"
+                            },
+                            "memory": {
+                                "guest": "16284Mi"
+                            },
+                            "resources": {
+                                "limits": {
+                                    "cpu": "8",
+                                    "memory": "16Gi"
+                                },
+                                "requests": {
+                                    "cpu": "500m",
+                                    "memory": "10922Mi"
+                                }
+                            }
+                        },
+                        "evictionStrategy": "LiveMigrate",
+                        "hostname": "vsrx3-0-2",
+                        "networks": [
+                            {
+                                "name": "default",
+                                "pod": {}
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "root-disk-vsrx3-0-2",
+                                "persistentVolumeClaim": {
+                                    "claimName": "vsrx3-0-2-root-disk-vsrx3-0-2-yke82"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": "2022-05-20T10:17:19Z",
+                        "lastTransitionTime": "2022-05-20T10:17:19Z",
+                        "message": "VMI does not exist",
+                        "reason": "VMINotExists",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": null,
+                        "status": "True",
+                        "type": "LiveMigratable"
+                    }
+                ],
+                "printableStatus": "Stopped",
+                "volumeSnapshotStatuses": [
+                    {
+                        "enabled": true,
+                        "name": "root-disk-vsrx3-0-2"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "kubevirt.io/v1",
+            "kind": "VirtualMachine",
+            "metadata": {
+                "annotations": {
+                    "harvesterhci.io/volumeClaimTemplates": "[{\"metadata\":{\"name\":\"vsrx3-0-3-root-disk-vsrx3-0-3-stuzl\",\"annotations\":{\"harvesterhci.io/imageId\":\"default/image-9r7bc\"}},\"spec\":{\"accessModes\":[\"ReadWriteMany\"],\"resources\":{\"requests\":{\"storage\":\"16Gi\"}},\"volumeMode\":\"Block\",\"storageClassName\":\"longhorn-image-9r7bc\"}}]",
+                    "kubevirt.io/latest-observed-api-version": "v1",
+                    "kubevirt.io/storage-observed-api-version": "v1alpha3",
+                    "network.harvesterhci.io/ips": "[]"
+                },
+                "creationTimestamp": "2022-05-20T10:19:44Z",
+                "finalizers": [
+                    "wrangler.cattle.io/VMController.UnsetOwnerOfPVCs"
+                ],
+                "generation": 2,
+                "labels": {
+                    "harvesterhci.io/creator": "harvester",
+                    "harvesterhci.io/os": "linux"
+                },
+                "name": "vsrx3-0-3",
+                "namespace": "default",
+                "resourceVersion": "12015934",
+                "uid": "0658b397-89ea-4590-93ec-a0aa6812ab28"
+            },
+            "spec": {
+                "running": true,
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "harvesterhci.io/sshNames": "[]"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "harvesterhci.io/vmName": "vsrx3-0-3"
+                        }
+                    },
+                    "spec": {
+                        "domain": {
+                            "cpu": {
+                                "cores": 9,
+                                "sockets": 1,
+                                "threads": 1
+                            },
+                            "devices": {
+                                "disks": [
+                                    {
+                                        "bootOrder": 1,
+                                        "disk": {
+                                            "bus": "virtio"
+                                        },
+                                        "name": "root-disk-vsrx3-0-3"
+                                    }
+                                ],
+                                "interfaces": [
+                                    {
+                                        "macAddress": "52:54:00:a1:65:f2",
+                                        "masquerade": {},
+                                        "model": "virtio",
+                                        "name": "default"
+                                    }
+                                ]
+                            },
+                            "features": {
+                                "acpi": {},
+                                "smm": {
+                                    "enabled": false
+                                }
+                            },
+                            "firmware": {
+                                "bootloader": {
+                                    "efi": {
+                                        "secureBoot": false
+                                    }
+                                }
+                            },
+                            "machine": {
+                                "type": "pc"
+                            },
+                            "memory": {
+                                "guest": "32668Mi"
+                            },
+                            "resources": {
+                                "limits": {
+                                    "cpu": "9",
+                                    "memory": "32Gi"
+                                },
+                                "requests": {
+                                    "cpu": "562m",
+                                    "memory": "21845Mi"
+                                }
+                            }
+                        },
+                        "evictionStrategy": "LiveMigrate",
+                        "hostname": "vsrx3-0-3",
+                        "networks": [
+                            {
+                                "name": "default",
+                                "pod": {}
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "root-disk-vsrx3-0-3",
+                                "persistentVolumeClaim": {
+                                    "claimName": "vsrx3-0-3-root-disk-vsrx3-0-3-stuzl"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2022-05-20T10:20:18Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": null,
+                        "status": "True",
+                        "type": "LiveMigratable"
+                    }
+                ],
+                "created": true,
+                "printableStatus": "Running",
+                "ready": true,
+                "volumeSnapshotStatuses": [
+                    {
+                        "enabled": true,
+                        "name": "root-disk-vsrx3-0-3"
+                    }
+                ]
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": "",
+        "selfLink": ""
+    }
+}
+2-r6515:~ #
